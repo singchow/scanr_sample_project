@@ -1,6 +1,9 @@
 == README
 A sample project using scanR API to read text from images
 
+#Recognition
+- Thanks to @https://github.com/puffygeek/scanr-ruby for creating the gem for ScanR
+
 #Getting started
 1) Register @ https://www.scanr.xyz/ to get your Token for ScanR. It's free for usage below 100 API calls.
 2) Run bundle install.
