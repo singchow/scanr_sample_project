@@ -28,15 +28,15 @@ class ScanFilesController < ApplicationController
 
     respond_to do |format|
       if @scan_file.save
-        scanr = ScanrCustom.new '1lepz6yq238tzkt9', 'eng'
-        full_path = @scan_file.avatar.path.to_s
-        # Rails.root.join('public', @scan_file.avatar.url).to_s
-        p full_path
-        return_result = scanr.ocr full_path
-        @scan_file.result = return_result
-        @scan_file.save
-        format.html { redirect_to @scan_file, notice: 'Scan file was successfully created.' }
-        format.json { render :show, status: :created, location: @scan_file }
+        scanr = ScanrCustom.new 'YOUR_TOKEN', 'eng'
+        @scan_file.result = scanr.ocr @scan_file.avatar.path.to_s
+        if @scan_file.save
+          format.html { redirect_to @scan_file, notice: 'Scan file was successfully created.' }
+          format.json { render :show, status: :created, location: @scan_file }
+        else
+          format.html { render :new }
+          format.json { render json: @scan_file.errors, status: :unprocessable_entity }
+        end
       else
         format.html { render :new }
         format.json { render json: @scan_file.errors, status: :unprocessable_entity }
