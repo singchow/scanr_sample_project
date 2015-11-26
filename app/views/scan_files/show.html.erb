@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @scan_file.avatar.url(:medium) %>
+  <strong>Result:</strong>
+  <%= @scan_file.result %>
+</p>
+
+<%= link_to 'Edit', edit_scan_file_path(@scan_file) %> |
+<%= link_to 'Back', scan_files_path %>
